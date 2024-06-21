@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta property="og:image"
+    content="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg">
+  <meta name="description" content="Quản Lý Nhân Viên">
+
+  <title>Quản Lý Nhân Viên</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="img/user.png" rel="icon">
+  <link href="img/user.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/add-employee.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQT9muLY54N8vK7_XOdxhEd9WuPumNKPs",
+      authDomain: "datn-trunghieu.firebaseapp.com",
+      projectId: "datn-trunghieu",
+      storageBucket: "datn-trunghieu.appspot.com",
+      messagingSenderId: "706524586992",
+      appId: "1:706524586992:web:1a8a1d3d9226aed0cd3335",
+      measurementId: "G-F6XDRC7S0Q"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const storageRef = storage.ref();
+    const database = firebase.database();
+  </script>
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Quản Lý Nhân Viên</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">1</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              1 Thông báo mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Chấm Công</h4>
+                <p>Nhân Viên: 10120999 vừa chấm công</p>
+                <p>1 phút trước</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              Có 2 Tin Nhắn Mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Hệ Thống</h4>
+                  <p>Nhân viên chấm công không hợp lệ</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Thông Báo</h4>
+                  <p>Nhân viên chấm công</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="img/user.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+              <span></span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout();">
+
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Bảng Điều Khiển</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Nhân Viên</span><i
+            class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="employees-list.html">
+              <i class="bi bi-circle"></i><span>Danh Sách Nhân Viên</span>
+            </a>
+          </li>
+          <li>
+            <a href="add-employee.html" class="active">
+              <i class="bi bi-circle"></i><span>Thêm Nhân Viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Quản lý chấm công</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="attendance.html">
+              <i class="bi bi-circle"></i><span>Chấm công</span>
+            </a>
+          </li>
+          <li>
+            <a href="salary.html">
+              <i class="bi bi-circle"></i><span>Lương nhân viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
+      <li class="nav-heading">Khác</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Nhân Viên</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Thêm Nhân Viên</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Thêm Nhân Viên Mới</h5>
+
+              <!-- Thêm nhân viên -->
+              <form id="addnhanvien">
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ID</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="idnhanvien">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Tên </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tennhanvien">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Địa chỉ</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="diachinhanvien">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Số Điện Thoại</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" id="sdtnhanvien">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Ảnh</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Ngày</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="datenhanvien">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">CCCD</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" id="cccdnhanvien">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Ghi Chú</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" style="height: 100px" id="ghichu"></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Vị Trí</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" id="vitri">
+                      <option value="Nhân Viên">Nhân Viên</option>
+                      <option value="Nhân Viên Thời Vụ">Nhân Viên Thời Vụ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label"></label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- dialog loading  -->
+        <div id="loadingDialog" class="modal-loading">
+          <div class="modal-content-loading">
+            <div class="loader"></div>
+          </div>
+        </div>
+
+        <div id="dialogthemvantay">
+          <div class="modal-content-vantay">
+            Vui lòng đăng ký vân tay cho ID vừa thêm để tiếp tục!
+            <button id="checkvantay" class="btn btn-primary" onclick="hidendialogvantay();">Xác nhận</button>
+          </div>
+        </div>
+
+
+
+
+        <!-- Thêm nhân viên lên dữ liệu  -->
+        <script>
+
+          var checkvantay = document.getElementById('checkvantay');
+          // check login
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              console.log("đã đăng nhập");
+            } else {
+              console.log("chưa đăng nhập");
+            }
+          });
+
+          async function uploadFileAndSavePost(selectedFile, fileType, idnhanvienvalue, tennhanvienvalue, diachinhanvienvalue, sdtnhanvienvalue, datenhanvienvalue, cccdnhanvienvalue, vitrivalue, ghichuvalue) {
+            try {
+              showLoadingDialog();
+              const today = new Date();
+              const dateTime = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+              var idprepareadd = 0;
+
+              // Tạo tham chiếu đến kho lưu trữ Firebase dựa vào loại tệp
+              const storageRef = storage.ref(`image-nhanvien/` + idnhanvienvalue);
+              await storageRef.put(selectedFile);
+              // Lấy URL từ kho lưu trữ
+              const fileUrl = await storageRef.getDownloadURL();
+              console.log(`Đăng thành công. URL:`, fileUrl);
+              // Lưu dữ liệu vào Realtime Database với IDnhanvien làm key
+              if (ghichuvalue == "") {
+                ghichuvalue = 'nothing';
+              }
+              const postData = {
+                idnhanvien: idnhanvienvalue,
+                tennhanvien: tennhanvienvalue,
+                diachinhanvien: diachinhanvienvalue,
+                sdtnhanvien: sdtnhanvienvalue,
+                datenhanvien: datenhanvienvalue,
+                cccdnhanvien: cccdnhanvienvalue,
+                statuschamcong: 0,
+                luong: 300000,
+                ghichu: ghichuvalue,
+                vitri: vitrivalue,
+                vantay: 0,
+                [`${fileType}Url`]: fileUrl,
+                time: dateTime,
+              };
+              await database.ref(`dsnhanvien/${idnhanvienvalue}`).set(postData);
+              hideLoadingDialog();
+              showdialogvantay();
+              checkvantay.disabled = true;
+              let idnhanvienvalueInt = parseInt(idnhanvienvalue,10);
+              await database.ref("idprepareadd").set(idnhanvienvalueInt);
+              database.ref(`idprepareadd`).on("value", (snapshot) => {
+                var data = snapshot.val();
+                if (data == 0) {
+                  checkvantay.disabled = false;
+                }
+              });
+              formFile.value = "";
+              idnhanvien.value = "";
+              tennhanvien.value = "";
+              diachinhanvien.value = "";
+              sdtnhanvien.value = "";
+              datenhanvien.value = "";
+              cccdnhanvien.value = "";
+              ghichu.value = "";
+              vitri.value = "";
+            }
+            catch (error) {
+              console.error(`Lỗi`, error);
+            }
+          };
+
+          // khai báo biến input
+          const addnhanvien = document.getElementById('addnhanvien');
+          //button
+          const idnhanvien = document.getElementById('idnhanvien');
+          const tennhanvien = document.getElementById('tennhanvien');
+          const diachinhanvien = document.getElementById('diachinhanvien');
+          const sdtnhanvien = document.getElementById('sdtnhanvien');
+          const formFile = document.getElementById('formFile');
+          const datenhanvien = document.getElementById('datenhanvien');
+          const cccdnhanvien = document.getElementById('cccdnhanvien');
+          const ghichu = document.getElementById('ghichu');
+          const vitri = document.getElementById('vitri');
+
+          addnhanvien.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const selectedFile = formFile.files[0];
+            if (selectedFile) {
+              const fileType = selectedFile.type;
+              const idnhanvienvalue = idnhanvien.value;
+              const tennhanvienvalue = tennhanvien.value;
+              const diachinhanvienvalue = diachinhanvien.value;
+              const sdtnhanvienvalue = sdtnhanvien.value;
+              const datenhanvienvalue = datenhanvien.value;
+              const cccdnhanvienvalue = cccdnhanvien.value;
+              const ghichuvalue = ghichu.value;
+              const vitrivalue = vitri.value;
+
+              if (!idnhanvienvalue || !tennhanvienvalue || !diachinhanvienvalue || !sdtnhanvienvalue || !datenhanvienvalue || !cccdnhanvienvalue || !vitrivalue) {
+                alert("Không được để trống");
+              } else {
+                // Kiểm tra xem idnhanvien đã tồn tại trong firebase chưa
+                const existingPostRef = database.ref(`dsnhanvien/${idnhanvienvalue}`);
+                existingPostRef.once("value", async (snapshot) => {
+                  if (snapshot.exists()) {
+                    // idnhanvien đã tồn tại
+                    alert("ID nhân viên đã tồn tại!");
+                  } else if (fileType.startsWith("image/") || fileType.startsWith("video/")) {
+                    await uploadFileAndSavePost(selectedFile, fileType.split("/")[0], idnhanvienvalue, tennhanvienvalue, diachinhanvienvalue, sdtnhanvienvalue, datenhanvienvalue, cccdnhanvienvalue, vitrivalue, ghichuvalue);
+                  } else {
+                    // Loại tệp không được hỗ trợ
+                    alert("Loại tệp không hỗ trợ!");
+                  }
+                });
+              }
+            } else {
+              alert("Chưa chọn tệp!");
+            }
+          });
+
+        </script>
+
+
+
+
+      </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Quản Lý Nhân Viên</span></strong>. All Rights Reserved
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/jsforall.js"></script>
+
+</body>
+
+</html>

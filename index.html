@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta property="og:image"
+    content="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg">
+  <meta name="description" content="Quản Lý Nhân Viên">
+
+  <title>Quản Lý Nhân Viên</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="img/user.png" rel="icon">
+  <link href="img/user.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQT9muLY54N8vK7_XOdxhEd9WuPumNKPs",
+      authDomain: "datn-trunghieu.firebaseapp.com",
+      projectId: "datn-trunghieu",
+      storageBucket: "datn-trunghieu.appspot.com",
+      messagingSenderId: "706524586992",
+      appId: "1:706524586992:web:1a8a1d3d9226aed0cd3335",
+      measurementId: "G-F6XDRC7S0Q"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const storageRef = storage.ref();
+    const database = firebase.database();
+  </script>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Quản Lý Nhân Viên</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">1</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              1 Thông báo mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Chấm Công</h4>
+                <p>Nhân Viên: 10120999 vừa chấm công</p>
+                <p>1 phút trước</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              Có 2 Tin Nhắn Mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Hệ Thống</h4>
+                  <p>Nhân viên chấm công không hợp lệ</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Thông Báo</h4>
+                  <p>Nhân viên chấm công</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="img/user.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+              <span></span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Bảng Điều Khiển</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
+
+      <!-- Quản lý nhân Viên  -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Nhân Viên</span><i
+            class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="employees-list.html">
+              <i class="bi bi-circle"></i><span>Danh Sách Nhân Viên</span>
+            </a>
+          </li>
+          <li>
+            <a href="add-employee.html">
+              <i class="bi bi-circle"></i><span>Thêm Nhân Viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Quản Lý Nhân Viên -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Quản lý chấm công</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="attendance.html">
+              <i class="bi bi-circle"></i><span>Chấm công</span>
+            </a>
+          </li>
+          <li>
+            <a href="salary.html">
+              <i class="bi bi-circle"></i><span>Lương nhân viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
+
+      <li class="nav-heading">Khác</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Bảng Điều Khiển</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Bảng Điều Khiển</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Nhân viên đã chấm công -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Nhân Viên <span>| Today</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="nhanvien"></h6>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Nhân Viên chưa chấm công -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Nhân Viên Thời Vụ <span>| Today</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="nhanvienthoivu"></h6>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- ALL nhân viên -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Tổng Nhân Viên <span>| Current</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="allemployee"></h6>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+
+
+            <!-- Thông báo chấm công -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="card-body">
+                  <h5 class="card-title">Danh Sách Chấm Công <span>| Today</span></h5>
+
+                  <table id="employeeList" class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Giờ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">2457</th>
+                        <td>Brandon Jacob</td>
+                        <td>At praesentium minu</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+
+
+        <script>
+
+          var allemployee = document.getElementById('allemployee');
+          var nhanvien = document.getElementById('nhanvien');
+          var nhanvienthoivu = document.getElementById('nhanvienthoivu');
+
+          // hiển thị nhân viên chấm công hôm nay
+          const today = new Date();
+          const dateTime = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+          var checkdimuon = "Đúng giờ";
+          var chechchamcong = false;
+          var checkgiora = 'Chưa về';
+          var checkphutra = 'Chưa về';
+          database.ref("dsnhanvien").on("value", (snapshot) => {
+            let countNhanVien = 0;
+            let countNhanVienThoiVu = 0;
+            employeeList.innerHTML = "";
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            thead.innerHTML = `
+            <tr>
+              <th scope="col">ID</th>
+              <th>Tên</th>
+              <th>Vị Trí</th>
+              <th data-type="date" data-format="YYYY/DD/MM">Giờ Vào</th>
+              <th>Giờ ra</th>
+              <th>Note</th>
+            </tr>`;
+
+            snapshot.forEach((childSnapshot) => {
+              soluongnhanvien = snapshot.numChildren();
+              const detail = childSnapshot.val();
+              if (detail.vitri === "Nhân Viên") {
+                countNhanVien++;
+              } else if (detail.vitri === "Nhân Viên Thời Vụ") {
+                countNhanVienThoiVu++;
+              }
+              database.ref("dsnhanvien/" + detail.idnhanvien + "/chamcong").on("value", (snapshotsmall) => {
+                snapshotsmall.forEach((childSnapshotsmall) => {
+                  const detailsmall = childSnapshotsmall.val();
+                  if (dateTime == childSnapshotsmall.key && !detailsmall.hasOwnProperty('giora')) {
+                    detailsmall.giora = "Chưa về";
+                  }
+                  else {
+                    detailsmall.giora = detailsmall.giora + " giờ : " + detailsmall.phutra + " phút";
+                  }
+                  if (dateTime == childSnapshotsmall.key && detailsmall.hasOwnProperty('giovao')) {
+                    chechchamcong = true;
+                  } else {
+                    chechchamcong = false;
+                  }
+                  if (chechchamcong == true) {
+                    if (detailsmall.giovao > 8 || detailsmall.giovao == 8 && detailsmall.phutvao > 0) {
+                      checkdimuon = "Đi muộn"
+                    } else {
+                      checkdimuon = "Đúng giờ"
+                    }
+                    if (dateTime === childSnapshotsmall.key) {
+                      const row = document.createElement("tr");
+                      row.innerHTML = `
+                <th scope="row">${detail.idnhanvien}</th>
+                  <td>${detail.tennhanvien}</td>
+                  <td>${detail.vitri}</td>
+                  <td>${detailsmall.giovao} giờ : ${detailsmall.phutvao} phút</td> 
+                  <td>${detailsmall.giora}</td> 
+                  <td>${checkdimuon}</td> 
+                </td>`;
+                      tbody.appendChild(row);
+                    }
+                  }
+                });
+              });
+            });
+            employeeList.appendChild(thead);
+            employeeList.appendChild(tbody);
+            allemployee.innerHTML = soluongnhanvien;
+            nhanvien.innerHTML = countNhanVien;
+            nhanvienthoivu.innerHTML = countNhanVienThoiVu;
+
+          });
+
+        </script>
+
+
+
+
+
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoạt Động Gần Đây <span>| Today</span></h5>
+              <div class="activity">
+                <div class="activity-item d-flex">
+                  <div class="activite-label">32 min</div>
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activity-content">
+                    Nhân Viên A xin nghỉ làm.
+                  </div>
+                </div>
+                <div class="activity-item d-flex">
+                  <div class="activite-label">56 min</div>
+                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                  <div class="activity-content">
+                    Nhân Viên B rời khỏi khu làm việc.
+                  </div>
+                </div>
+                <div class="activity-item d-flex">
+                  <div class="activite-label">2 hrs</div>
+                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+                  <div class="activity-content">
+                    Máy số 30 báo hỏng.
+                  </div>
+                </div>
+                <div class="activity-item d-flex">
+                  <div class="activite-label">1 day</div>
+                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
+                  <div class="activity-content">
+                    Máy số 15 trục trặc cần sử lý.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Quản Lý Nhân Viên</span></strong>. All Rights Reserved
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/jsforall.js"></script>
+
+</body>
+
+</html>

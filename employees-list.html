@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta property="og:image"
+    content="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg">
+  <meta name="description" content="Quản Lý Nhân Viên">
+
+  <title>Quản Lý Nhân Viên</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="img/user.png" rel="icon">
+  <link href="img/user.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/employee-list.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQT9muLY54N8vK7_XOdxhEd9WuPumNKPs",
+      authDomain: "datn-trunghieu.firebaseapp.com",
+      projectId: "datn-trunghieu",
+      storageBucket: "datn-trunghieu.appspot.com",
+      messagingSenderId: "706524586992",
+      appId: "1:706524586992:web:1a8a1d3d9226aed0cd3335",
+      measurementId: "G-F6XDRC7S0Q"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const storageRef = storage.ref();
+    const database = firebase.database();
+  </script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Quản Lý Nhân Viên</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">1</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              1 Thông báo mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Chấm Công</h4>
+                <p>Nhân Viên: 10120999 vừa chấm công</p>
+                <p>1 phút trước</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              Có 2 Tin Nhắn Mới
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Hệ Thống</h4>
+                  <p>Nhân viên chấm công không hợp lệ</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+
+            <li class="message-item">
+              <a href="#">
+                <img src="img/user.png" alt="" class="rounded-circle">
+                <div>
+                  <h4>Thông Báo</h4>
+                  <p>Nhân viên chấm công</p>
+                  <p>1 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="img/user.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+              <span></span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout();">
+
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Bảng Điều Khiển</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Nhân Viên</span><i
+            class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="employees-list.html" class="active">
+              <i class="bi bi-circle"></i><span>Danh Sách Nhân Viên</span>
+            </a>
+          </li>
+          <li>
+            <a href="add-employee.html">
+              <i class="bi bi-circle"></i><span>Thêm Nhân Viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Quản lý chấm công</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="attendance.html">
+              <i class="bi bi-circle"></i><span>Chấm công</span>
+            </a>
+          </li>
+          <li>
+            <a href="salary.html">
+              <i class="bi bi-circle"></i><span>Lương nhân viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
+
+
+      <li class="nav-heading">Khác</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Nhân Viên</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Danh Sách Nhân Viên</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+      <div class="row ">
+        <div class="col-lg-6" style="width: 100%;">
+          <input type="text" id="searchInput" class="form-control" placeholder="Tìm Kiếm Nhân Viên"><br>
+          <table id="employeeList" class="table table-bordered border-primary">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Vị Trí</th>
+                <th scope="col">Tuổi</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Địa Chỉ</th>
+                <th scope="col">Hành Động</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+          <!-- End Primary Color Bordered Table -->
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div id="employeeDetails">
+      </div>
+    </div>
+  </div>
+
+  <div id="loadingDialog" class="modal-loading">
+    <div class="modal-content-loading">
+      <div class="loader"></div>
+    </div>
+  </div>
+  <div id="DeleteNhanVien" class="hidden">
+    <div class="button-container">
+      <p id="confirmmess">Bạn có chắc chắn muốn xóa không?</p>
+      <div class="buttondelete">
+        <button class="btn btn-primary" id="yes">Yes</button>
+        <button class="btn btn-primary" id="no">No</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const modal = document.getElementById('myModal');
+    const employeeDetails = document.getElementById('employeeDetails');
+    var confirmmess = document.getElementById('confirmmess');
+
+    // xem treen dialog
+    function xemthongtin(id) {
+      const employeeId = id;
+      database.ref("dsnhanvien/" + employeeId).once("value", (snapshot) => {
+        const employee = snapshot.val();
+        if (employee) {
+          // Hiển thị modal
+          modal.style.display = "block";
+          var vantayvalue = ''
+          if (employee.vantay != 1) {
+            vantayvalue = 'Chưa Thêm!'
+          } else {
+            vantayvalue = 'Đã thêm!'
+
+          }
+          // Hiển thị thông tin nhân viên
+          employeeDetails.innerHTML = `
+        <div class="employee-details-container">
+          <div class="employee-image-container">
+            <img class="employee-image" src="${employee.imageUrl}" alt="${employee.idnhanvien}">
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="employee-info-container">
+            <p>ID: ${employee.idnhanvien}</p>
+            <p>Tên: ${employee.tennhanvien}</p>
+            <p>Vị trí: ${employee.vitri}</p>
+            <p>Tuổi: ${employee.datenhanvien}</p>
+            <p>Lương: ${(employee.luong).toLocaleString()} VNĐ</p>
+            <p>Địa chỉ: ${employee.diachinhanvien}</p>
+            <p>SĐT: ${employee.sdtnhanvien}</p>
+            <p>CCCD: ${employee.cccdnhanvien}</p>
+            <p>Vân Tay: ${vantayvalue}</p>
+          </div>
+        </div>`;
+        } else {
+          console.log("Không tìm thấy thông tin nhân viên");
+        }
+      });
+    }
+    // Khi click ra ngoài ẩn modal
+    window.addEventListener('click', function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // tìm kiếm nhân viên 
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function () {
+      const searchTerm = this.value.trim().toLowerCase();
+      const tableRows = document.querySelectorAll('#employeeList tbody tr');
+      tableRows.forEach(row => {
+        let found = false;
+        const cells = row.querySelectorAll('td');
+
+        cells.forEach(cell => {
+          if (cell.textContent.trim().toLowerCase().includes(searchTerm)) {
+            found = true;
+          }
+        });
+
+        if (found) {
+          row.style.display = '';
+          console.log('ok');
+        } else {
+          row.style.display = 'none';
+          console.log('no');
+        }
+      });
+    });
+
+    // hiển thị tất cả nhân viên 
+    database.ref("dsnhanvien").on("value", (snapshot) => {
+      employeeList.innerHTML = "";
+      const thead = document.createElement("thead");
+      const tbody = document.createElement("tbody");
+      thead.innerHTML = `
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Vị Trí</th>
+      <th scope="col">Tuổi</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Địa Chỉ</th>
+      <th scope="col">Hành Động</th>
+    </tr>
+  `;
+
+      snapshot.forEach((childSnapshot) => {
+        const detail = childSnapshot.val();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+      <th scope="row">${detail.idnhanvien}</th>
+      <td>${detail.tennhanvien}</td>
+      <td>${detail.vitri}</td>
+      <td>${detail.datenhanvien}</td> 
+      <td>${detail.time}</td>
+      <td>${detail.diachinhanvien}</td>
+      <td>
+        <button class="btn btn-primary" onclick="suaThongTin('${detail.idnhanvien}')">Sửa</button> 
+        <button class="btn btn-primary" onclick="Xoanhanvien('${detail.idnhanvien}','${detail.imageUrl}')">Xóa</button>
+        <button class="btn btn-primary" onclick="xemthongtin('${childSnapshot.key}')">Xem</button>
+      </td>`;
+        tbody.appendChild(row);
+      });
+      employeeList.appendChild(thead);
+      employeeList.appendChild(tbody);
+    });
+
+    // sửa thông tin nhân viên.
+    function suaThongTin(id) {
+      console.log(id);
+      const modal = document.getElementById('myModal');
+      const employeeDetails = document.getElementById('employeeDetails');
+
+      // Lấy thông tin nhân viên từ Firebase và hiển thị modal
+      database.ref("dsnhanvien/" + id).once("value", (snapshot) => {
+        const employee = snapshot.val();
+        if (employee) {
+          // Hiển thị modal
+          modal.style.display = "block";
+
+          // Hiển thị thông tin nhân viên
+          employeeDetails.innerHTML = `
+        <div class="employee-details-container">
+          <div class="employee-image-container">
+            <img id="employeeImage" class="employee-image" src="${employee.imageUrl}" alt="Hình ảnh nhân viên">
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="employee-info-container">
+            <p>ID: ${employee.idnhanvien}</p>
+            <p>Tên: <input type="text" id="employeeNameInput" value="${employee.tennhanvien}"></p>
+            <p>Vị trí: <select id="employeePositionInput">
+              <option value="Nhân Viên">Nhân Viên</option>
+              <option value="Quản Lý">Quản Lý</option></select>
+            </p>
+            <p>Tuổi: <input type="text" id="employeeAgeInput" value="${employee.datenhanvien}"></p>
+            <p>Lương: <input type="text" id="employeeLuongInput" value="${employee.luong}"></p>
+            <p>Địa chỉ: <input type="text" id="employeeAddressInput" value="${employee.diachinhanvien}"></p>
+            <p>SĐT: <input type="number" id="employeenumberphoneInput" value="${employee.sdtnhanvien}"></p>
+            <p>CCCD: <input type="number" id="employeecccdInput" value="${employee.cccdnhanvien}"></p>
+            <button class="btn btn-primary" onclick="chinhSuaAnh('${id}')">Chỉnh sửa ảnh</button>
+            <button class="btn btn-primary" onclick="luuThayDoi('${id}')">Lưu Thay Đổi</button>
+          </div>
+        </div>`;
+
+          employeeDetails.innerHTML += ``;
+        } else {
+          console.log("Không tìm thấy thông tin nhân viên");
+        }
+      });
+    }
+
+    function luuThayDoi(id) {
+      const newName = document.getElementById('employeeNameInput').value;
+      const newPosition = document.getElementById('employeePositionInput').value;
+      const newAge = document.getElementById('employeeAgeInput').value;
+      const newLuong = document.getElementById('employeeLuongInput').value;
+      const newAddress = document.getElementById('employeeAddressInput').value;
+      const newnumberphone = document.getElementById('employeenumberphoneInput').value;
+      const newcccd = document.getElementById('employeecccdInput').value;
+
+      database.ref("dsnhanvien/" + id).update({
+        tennhanvien: newName,
+        vitri: newPosition,
+        datenhanvien: newAge,
+        luong: newLuong,
+        diachinhanvien: newAddress,
+        cccdnhanvien: newcccd,
+        sdtnhanvien: newnumberphone
+      }).then(() => {
+        const modal = document.getElementById('myModal');
+        modal.style.display = "none";
+      }).catch((error) => {
+        console.error("Lỗi khi cập nhật thông tin nhân viên: ", error);
+      });
+    }
+
+    function chinhSuaAnh(id) {
+      // Mở hộp thoại để chọn ảnh
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (event) => {
+        showLoadingDialog();
+        const file = event.target.files[0];
+        if (file) {
+          const storageRef = storage.ref("image-nhanvien/" + id);
+          storageRef.put(file).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+            snapshot.ref.getDownloadURL().then((downloadURL) => {
+              database.ref("dsnhanvien/" + id).update({
+                imageUrl: downloadURL
+              }).then(() => {
+                // Hiển thị ảnh mới 
+                const employeeImage = document.getElementById('employeeImage');
+                employeeImage.src = downloadURL;
+                setTimeout(() => {
+                  hideLoadingDialog();
+                }, 1000);
+              }).catch((error) => {
+                console.error("Lỗi cập nhật đường dẫn ảnh: ", error);
+              });
+            }).catch((error) => {
+              console.error("Lỗi lấy URL: ", error);
+            });
+          }).catch((error) => {
+            console.error("Lỗi khi upload ảnh: ", error);
+          });
+        }
+      };
+      input.click();
+    }
+   
+    //xoá nhân viên
+    function Xoanhanvien(id, imageUrl) {
+      var DeleteNhanVien = document.getElementById("DeleteNhanVien");
+      var yes = document.getElementById("yes");
+      var no = document.getElementById("no");
+      DeleteNhanVien.style.display = "block";
+      confirmmess.innerHTML= `Chắc chắn xóa nhân viên có ID là: ${id}`;
+      yes.addEventListener("click", (e) => {
+        if (imageUrl) {
+          const imageStorageRef = storage.refFromURL(imageUrl);
+          imageStorageRef.getMetadata()
+            .then(() => {
+              imageStorageRef.delete()
+                .then(() => {
+                  console.log('Dữ liệu ảnh đã được xóa thành công khỏi Storage.');
+                })
+                .catch((error) => {
+                  console.error('Lỗi xóa ảnh từ Storage:', error);
+                });
+            })
+            .catch((error) => {
+              console.error('Lỗi xác minh tệp ảnh:', error);
+            });
+        }
+        const nahnvienRef = database.ref(`dsnhanvien/${id}`);
+        nahnvienRef.remove()
+          .then(() => {
+            console.log('Dữ liệu đã được xóa thành công khỏi Realtime Database.');
+          })
+          .catch((error) => {
+            console.error('Lỗi xóa bài đăng từ Realtime Database:', error);
+          });
+        hiddenconfirm();
+
+
+      });
+      no.addEventListener("click", (e) => {
+        hiddenconfirm();
+      });
+    }
+   
+    function hiddenconfirm() {
+      var DeleteNhanVien = document.getElementById("DeleteNhanVien");
+      DeleteNhanVien.style.display = "none";
+    }
+  </script>
+  <style>
+
+  </style>
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Quản Lý Nhân Viên</span></strong>. All Rights Reserved
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/jsforall.js"></script>
+
+</body>
+
+</html>

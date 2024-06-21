@@ -1,0 +1,124 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  position: relative;
+  color: black;
+  font-weight: 600;
+}
+
+.employee-details-container {
+  display: flex;
+}
+
+.employee-image-container {
+  margin-right: 20px;
+}
+
+.employee-image {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.vertical-divider {
+  width: 2px;
+  background-color: #bfbfbf;
+  margin: 0 20px;
+  /* Khoảng cách giữa thanh chắn và hình ảnh, thông tin */
+}
+
+.modal input {
+  padding: 3px;
+}
+
+
+
+.modal-loading {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*------------------------------- form delete nhan vien---------------------------------------------------------------------------------*/
+.hidden {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+.button-container .buttondelete{
+  display: flex;
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
